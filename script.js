@@ -1,4 +1,4 @@
-var tfl = [
+var raw = [
     {
         "$type": "Tfl.Api.Presentation.Entities.Prediction, Tfl.Api.Presentation.Entities",
         "id": "1790374630",
@@ -371,7 +371,22 @@ var tfl = [
 ]
 
 
+function compare(a, b) {
 
+    var genreA = a.timeToStation;
+    var genreB = b.timeToStation;
+
+    var comparison = 0;
+    if (genreA > genreB) {
+      comparison = 1;
+    } else if (genreA < genreB) {
+      comparison = -1;
+    }
+    return comparison;
+  }
+  
+
+var tfl = raw.sort(compare);
 /*
 
 H1
@@ -474,9 +489,6 @@ function write_board_results(current_loop, row_send) {
 
 }
 
-function sort_table() {
-    
-}
 
 function platforms() {
 
