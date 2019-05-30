@@ -419,8 +419,11 @@ document.body.appendChild(station_header);
 
 // Create a new fragment for the platform and it's board results
 var platform_board = document.createDocumentFragment();
+
+
 // Create a container div to add to the fragment
 var pb_container = document.createElement('div');
+pb_container.setAttribute('id', 'container');
 
 
 function update_fragment() {
@@ -445,7 +448,7 @@ function create_table(_platform_) {
     // Create table for displaying results
     var table = document.createElement('table');
     table.setAttribute('id', _platform_);
-    table.innerHTML = '<tr><th>Line</th><th>Destination</th><th>Arrival Time</th></tr>';
+    table.innerHTML = '<tr><th class="line-header">Line</th><th>Destination</th><th>Arrival Time</th></tr>';
     pb_container.appendChild(table);
 
     update_fragment();
@@ -463,12 +466,14 @@ function create_tr(_id_, _parent_table_) {
 }
 
 // Create table cell
-function create_td(_content_, _parent_row_) {
+function create_td(id, _content_, _parent_row_) {
 
     var td = document.createElement('td');
     td.innerHTML = _content_;
+    
     // currently how we're setting the class on line
-    td.setAttribute("class", _content_);
+    td.setAttribute("class", id);
+    
     _parent_row_.appendChild(td); 
 }
 
@@ -478,11 +483,11 @@ function write_board_results(current_loop, row_send) {
    
 
 
-    create_td(tfl[current_loop].lineName, row_send);
+    create_td(tfl[current_loop].lineId, tfl[current_loop].lineName, row_send);
     // create new cell for destination
-    create_td(tfl[current_loop].towards, row_send);
+    create_td('towards',tfl[current_loop].towards, row_send);
     // create new cell for arrival time
-    create_td(Math.round(tfl[current_loop].timeToStation / 60) +' mins', row_send);
+    create_td('arriving',Math.round(tfl[current_loop].timeToStation / 60) +' mins', row_send);
 
     
     update_fragment();

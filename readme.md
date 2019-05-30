@@ -1,22 +1,12 @@
-# Platform Board v0.1.1
-==
+# Platform Board v0.1.2
 
-## v0.1.1
-Added sort on the json data to show arrivals in order of arrival.
+__v0.1.2__
+- Added quick cleanup of styles (still need full design)
+- Moved the JSON to it's own file and added a second for Kings Cross
+- Added list page to choose Tube Station (currently 3 choices)
 
-## v0.1
-V0.1 of Tube Board. Simply loops over a set response and creates an arrival board for each platform found in the json. Limited to one station.
+__v0.1.1__
+- Added sort on the json data to show arrivals in order of arrival.
 
-
-## To Do
-= 
-Soon:
-- Design visuals for board website
-- Implment front end
-- Add JSON to separate file and import it
-- Check how adding fragments to the DOM works
-- Refactor script JS  
-
-Later:
-- Create a request to TFL API
-- Add in option to select tube line / station
+__v0.1__
+- V0.1 of Tube Board. Simply loops over a set response and creates an arrival board for each platform found in the json. Limited to one station.
