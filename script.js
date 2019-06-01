@@ -1,6 +1,3 @@
-/* var raw = JSON */
-
-
 function compare(a, b) {
 
     var genreA = a.timeToStation;
@@ -13,30 +10,31 @@ function compare(a, b) {
       comparison = -1;
     }
     return comparison;
+}
+
+var xmlhttp = new XMLHttpRequest();
+var url = "whitechapel.json";
+
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var raw = JSON.parse(this.responseText);
+    tfl = raw.sort(compare);
+    platforms(tfl);
   }
-  
-
-var tfl = raw.sort(compare);
-/*
-
-H1
-
-fragment = platform board
-    div = pb_container
-        platform header
-        table
-            tr
-            tr
-            tr
-        platform header
-        table
-            tr
-            tr
-            tr
-*/
+};
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
 
 
+// Create a new fragment for the platform and it's board results
+var platform_board = document.createDocumentFragment();
 
+// Create a container div to add to the fragment
+var pb_container = document.createElement('div');
+pb_container.setAttribute('id', 'container');
+
+
+function station_name(tfl) {
 // Create Station Name header element
 var station_header = document.createElement('h1');
 // Inserting the first station name in the array as station name
@@ -44,16 +42,7 @@ station_header.innerHTML = tfl[0].stationName;
 // Adding the header to the HTML body
 document.body.appendChild(station_header);
 
-
-
-
-// Create a new fragment for the platform and it's board results
-var platform_board = document.createDocumentFragment();
-
-
-// Create a container div to add to the fragment
-var pb_container = document.createElement('div');
-pb_container.setAttribute('id', 'container');
+}
 
 
 function update_fragment() {
@@ -91,7 +80,6 @@ function create_tr(_id_, _parent_table_) {
     tr.setAttribute("id", _id_);
     _parent_table_.appendChild(tr); 
 
-
     update_fragment();
 }
 
@@ -110,23 +98,20 @@ function create_td(id, _content_, _parent_row_) {
 
 function write_board_results(current_loop, row_send) {
     
-   
-
-
     create_td(tfl[current_loop].lineId, tfl[current_loop].lineName, row_send);
     // create new cell for destination
     create_td('towards',tfl[current_loop].towards, row_send);
     // create new cell for arrival time
     create_td('arriving',Math.round(tfl[current_loop].timeToStation / 60) +' mins', row_send);
 
-    
     update_fragment();
-
 }
 
 
-function platforms() {
+function platforms(tfl) {
 
+    station_name(tfl);
+    
     // setting outside for loop so not to be overwritten every loop 
     var platforms_array = [];
     
@@ -200,7 +185,4 @@ function platforms() {
             update_fragment();
         }
     }
-}
-
-platforms();
-
+};
