@@ -3,7 +3,7 @@
 __v0.1.2__
 - Added quick cleanup of styles (still need full design)
 - Moved the JSON to it's own file and added a second for Kings Cross
-- Added list page to choose Tube Station (currently 3 choices)
+- Added list page to choose Tube Station (currently 2 choices)
 
 __v0.1.1__
 - Added sort on the json data to show arrivals in order of arrival.
