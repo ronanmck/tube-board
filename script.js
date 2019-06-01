@@ -12,8 +12,16 @@ function compare(a, b) {
     return comparison;
 }
 
+
+if (window.location.href.indexOf("whitechapel") > -1) {
+       var url_check = 'whitechapel.json';
+}
+else if (window.location.href.indexOf("kings-cross") > -1) {
+    var url_check = 'kings-cross.json';
+}
+
 var xmlhttp = new XMLHttpRequest();
-var url = "whitechapel.json";
+var url = url_check;
 
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
@@ -98,7 +106,7 @@ function create_td(id, _content_, _parent_row_) {
 
 function write_board_results(current_loop, row_send) {
     
-    create_td(tfl[current_loop].lineId, tfl[current_loop].lineName, row_send);
+    create_td(tfl[current_loop].lineId + ' line', tfl[current_loop].lineName, row_send);
     // create new cell for destination
     create_td('towards',tfl[current_loop].towards, row_send);
     // create new cell for arrival time
