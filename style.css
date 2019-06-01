@@ -1,23 +1,43 @@
-.district {
-    background-image: url(./images/district-line-icon.jpg);
+.line {
+    background-image: url(./images/tube-line-icon.png);
     background-size: 15%;
     background-repeat: no-repeat;
+    background-position-y: center;
     padding: 5px 0 5px 32px;
 }
-
+.piccadilly {
+    background-color: #0009ac;
+    color: #fff;
+}
+.metropolitan {
+    background-color: #750857;
+    color: #fff;
+}
+.circle {
+   background-color: #ffcf00;
+}
+.district {
+    background-color: #007325;
+    color: #fff;
+}
 .hammersmith-city {
-    background-image: url(./images/hammersmith-line-icon.jpg);
-    background-size: 15%;
-    background-repeat: no-repeat;
-    padding: 5px 0 5px 32px;
+    background-color: #d898b0;
+}
+.northern {
+    background-color: #000;
+    color: #fff;
+}
+.victoria {
+    background-color: #009ee5;
 }
 
 .line-header {
     padding-left: 0;
 }
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    width: 510px;
+    width: 560px;
     margin: 70px auto;
 }
 
@@ -41,4 +61,5 @@ th {
 
 td {
     padding-left: 32px;
+    width: 155px;
 }
