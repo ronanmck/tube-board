@@ -1,12 +1,12 @@
 function compare(a, b) {
 
-    var genreA = a.timeToStation;
-    var genreB = b.timeToStation;
+    var trainA = a.timeToStation;
+    var trainB = b.timeToStation;
 
     var comparison = 0;
-    if (genreA > genreB) {
+    if (trainA > trainB) {
       comparison = 1;
-    } else if (genreA < genreB) {
+    } else if (trainA < trainB) {
       comparison = -1;
     }
     return comparison;
