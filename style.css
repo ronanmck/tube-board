@@ -5,6 +5,10 @@
     background-position-y: center;
     padding: 5px 0 5px 32px;
 }
+.central {
+    background-color: red;
+    color: #fff;
+}
 .piccadilly {
     background-color: #0009ac;
     color: #fff;

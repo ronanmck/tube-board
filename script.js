@@ -1,3 +1,12 @@
+
+// Create a new fragment for the platform and it's board results
+var platform_board = document.createDocumentFragment();
+
+// Create a container div to add to the fragment
+var pb_container = document.createElement('div');
+pb_container.setAttribute('id', 'container');
+
+
 function compare(a, b) {
 
     var trainA = a.timeToStation;
@@ -12,35 +21,60 @@ function compare(a, b) {
     return comparison;
 }
 
-
-if (window.location.href.indexOf("whitechapel") > -1) {
-       var url_check = 'whitechapel.json';
-}
-else if (window.location.href.indexOf("kings-cross") > -1) {
-    var url_check = 'kings-cross.json';
-}
-
 var xmlhttp = new XMLHttpRequest();
-var url = url_check;
+var url = "/api-key.json";
 
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
-    var raw = JSON.parse(this.responseText);
-    tfl = raw.sort(compare);
-    platforms(tfl);
+    var keys = JSON.parse(this.responseText);
+    set_api_key(keys);
   }
 };
 xmlhttp.open("GET", url, true);
 xmlhttp.send();
 
+var app_id;
+var app_key;
 
-// Create a new fragment for the platform and it's board results
-var platform_board = document.createDocumentFragment();
+function set_api_key(keys) {
+    var app_id = keys[0].app_id;
+    var app_key = keys[0].key;
 
-// Create a container div to add to the fragment
-var pb_container = document.createElement('div');
-pb_container.setAttribute('id', 'container');
+    api_call(app_id, app_key);
 
+}
+
+
+function api_call(app_id, app_key) {
+    
+    if (window.location.href.indexOf("whitechapel") > -1) {
+        var naptan_code = '940GZZLUWPL';
+        var url_check = 'https://api.tfl.gov.uk/StopPoint/' + naptan_code + '/Arrivals?app_id=' + app_id + '&app_key=' + app_key;
+    }
+    else if (window.location.href.indexOf("bethnal-green") > -1) {
+        var naptan_code = '940GZZLUBLG';
+        var url_check = 'https://api.tfl.gov.uk/StopPoint/' + naptan_code + '/Arrivals?app_id=' + app_id + '&app_key=' + app_key;
+    }
+
+    else if (window.location.href.indexOf("kings-cross") > -1) {
+        var naptan_code = '940GZZLUKSX';
+        var url_check = 'https://api.tfl.gov.uk/StopPoint/' + naptan_code + '/Arrivals?app_id=' + app_id + '&app_key=' + app_key;
+    }
+
+
+    var xmlhttp = new XMLHttpRequest();
+    var url = url_check;
+
+    xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var raw = JSON.parse(this.responseText);
+        tfl = raw.sort(compare);
+        platforms(tfl);
+    }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+}
 
 function station_name(tfl) {
 // Create Station Name header element
