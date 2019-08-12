@@ -2,7 +2,7 @@
 
 __v0.1.3__
 - Added API call to TFL
-- Added Bethnal Green as option
+- Added Bethnal Green tube as option
 
 __v0.1.2__
 - Added quick cleanup of styles (still need full design)
