@@ -5,6 +5,14 @@
     background-position-y: center;
     padding: 5px 0 5px 32px;
 }
+.central {
+    background-color: red;
+    color: #fff;
+}
+.london-overground {
+    background-color: #e86a10;
+    color: #fff;
+}
 .piccadilly {
     background-color: #0009ac;
     color: #fff;
